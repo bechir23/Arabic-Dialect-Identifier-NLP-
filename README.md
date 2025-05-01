@@ -1,5 +1,3 @@
-# Arabic Dialect Geographic Identifier
-
 A complete pipeline for identifying 25 regional Arabic dialects plus Modern Standard Arabic (MSA) from raw text and visualizing predictions on an interactive map.
 
 ## Overview of the Processing Steps
@@ -87,15 +85,8 @@ A complete pipeline for identifying 25 regional Arabic dialects plus Modern Stan
 ## Screenshots
 
 **1. Input Form & Button**  
-![Enter text and click button](screenshots/input_example.png)
+![Screenshot 2025-05-01 180411](https://github.com/user-attachments/assets/12d057cf-3494-434d-b8e3-9756b5c56e17)
 
 **2. Predictions & Map**  
-![Dialect probabilities and geographic heatmap](screenshots/output_map.png)
+![Screenshot 2025-05-01 180342](https://github.com/user-attachments/assets/55abd3dc-6599-4562-bdbf-6ee5382657d6)# Arabic Dialect Geographic Identifier
 
-## Citation
-
-If you use this work, please cite the MADAR corpus:
-
-> Bouamor et al., “MADAR: A Parallel Multi‑dialect Corpus of Arabic,” 2021.
-
-*Last updated: May 1, 2025.*
