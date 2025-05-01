@@ -43,13 +43,7 @@ A complete pipeline for identifying 25 regional Arabic dialects plus Modern Stan
    - AraBERT for MSA or embedding experiments  
    - Support for other Arabic BERT variants via Hugging Face
 
-   *Example transformer load:*  
-   ```python
-   from transformers import AutoTokenizer, AutoModelForSequenceClassification
-   tokenizer = AutoTokenizer.from_pretrained('UBC-NLP/MARBERT')
-   model = AutoModelForSequenceClassification.from_pretrained(
-       'UBC-NLP/MARBERT', num_labels=26)
-   ```
+
 
 5. **Evaluation**  
    Training and validation track accuracy and F1 (macro and weighted).  
@@ -95,5 +89,4 @@ A complete pipeline for identifying 25 regional Arabic dialects plus Modern Stan
 ## Sources
 
 - MADAR Corpus & Lexicon: "MADAR: A Parallel Multi‑dialect Corpus of Arabic" (Bouamor et al., 2021). PDF provided in repository.
-- AraVec Word Embeddings: "Arabic Word Embeddings" (Antiquera et al.). GitHub: https://github.com/bakrianoo/aravec
 
