@@ -90,3 +90,10 @@ A complete pipeline for identifying 25 regional Arabic dialects plus Modern Stan
 **2. Predictions & Map**  
 ![Screenshot 2025-05-01 180342](https://github.com/user-attachments/assets/55abd3dc-6599-4562-bdbf-6ee5382657d6)# Arabic Dialect Geographic Identifier
 
+
+
+## Sources
+
+- MADAR Corpus & Lexicon: "MADAR: A Parallel Multi‑dialect Corpus of Arabic" (Bouamor et al., 2021). PDF provided in repository.
+- AraVec Word Embeddings: "Arabic Word Embeddings" (Antiquera et al.). GitHub: https://github.com/bakrianoo/aravec
+
