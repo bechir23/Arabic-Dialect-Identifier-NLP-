@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_17b9564038c79ab1375b009e5e9603a7 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+        
+    <script src="https://cdn.jsdelivr.net/gh/python-visualization/folium@main/folium/templates/leaflet_heat.min.js"></script>
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_17b9564038c79ab1375b009e5e9603a7" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_17b9564038c79ab1375b009e5e9603a7 = L.map(
+                "map_17b9564038c79ab1375b009e5e9603a7",
+                {
+                    center: [20.0, 0.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 4,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_cab78b5739fe0f1c893758ca665bc94b = L.tileLayer(
+                "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 20,
+  "maxNativeZoom": 20,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors \u0026copy; \u003ca href=\"https://carto.com/attributions\"\u003eCARTO\u003c/a\u003e",
+  "subdomains": "abcd",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_cab78b5739fe0f1c893758ca665bc94b.addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+            var heat_map_65db48de32c606e6fea25acccce2d205 = L.heatLayer(
+                [[30.0444, 31.2357, 19.889641085671112]],
+                {
+  "minOpacity": 0.5,
+  "maxZoom": 18,
+  "radius": 40,
+  "blur": 25,
+  "gradient": {
+  "0.4": "blue",
+  "0.65": "lime",
+  "0.8": "yellow",
+  "1.0": "red",
+},
+  "maxOpacity": 0.8,
+}
+            );
+        
+    
+            heat_map_65db48de32c606e6fea25acccce2d205.addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+            var marker_294b32f0116e450018e325bf72036a7a = L.marker(
+                [30.0444, 31.2357],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_04c44aa3ec90a984097b35e8d1042ed6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b98227ece7fed8ea15a4c8f15eb6d503 = $(`<div id="html_b98227ece7fed8ea15a4c8f15eb6d503" style="width: 100.0%; height: 100.0%;">Cairo: 99.45%</div>`)[0];
+                popup_04c44aa3ec90a984097b35e8d1042ed6.setContent(html_b98227ece7fed8ea15a4c8f15eb6d503);
+            
+        
+
+        marker_294b32f0116e450018e325bf72036a7a.bindPopup(popup_04c44aa3ec90a984097b35e8d1042ed6)
+        ;
+
+        
+    
+    
+            marker_294b32f0116e450018e325bf72036a7a.bindTooltip(
+                `<div>
+                     Cairo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_4bd090532cedf7853d5e05a8b74e3bd0 = L.marker(
+                [36.7538, 3.0588],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_bb6c454e6c786fcd7fa958ede1214680 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_38b0bc6080fb28bc4b71b38cab50e655 = $(`<div id="html_38b0bc6080fb28bc4b71b38cab50e655" style="width: 100.0%; height: 100.0%;">Algiers: 0.33%</div>`)[0];
+                popup_bb6c454e6c786fcd7fa958ede1214680.setContent(html_38b0bc6080fb28bc4b71b38cab50e655);
+            
+        
+
+        marker_4bd090532cedf7853d5e05a8b74e3bd0.bindPopup(popup_bb6c454e6c786fcd7fa958ede1214680)
+        ;
+
+        
+    
+    
+            marker_4bd090532cedf7853d5e05a8b74e3bd0.bindTooltip(
+                `<div>
+                     Algiers
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2807258f25c91d5487d63e7e48845eca = L.marker(
+                [24.0889, 32.8998],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_89b71684ec298beb5628ce4cf771dc2d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_42e0347350ba3c748e1595f3423825c1 = $(`<div id="html_42e0347350ba3c748e1595f3423825c1" style="width: 100.0%; height: 100.0%;">Aswan: 0.11%</div>`)[0];
+                popup_89b71684ec298beb5628ce4cf771dc2d.setContent(html_42e0347350ba3c748e1595f3423825c1);
+            
+        
+
+        marker_2807258f25c91d5487d63e7e48845eca.bindPopup(popup_89b71684ec298beb5628ce4cf771dc2d)
+        ;
+
+        
+    
+    
+            marker_2807258f25c91d5487d63e7e48845eca.bindTooltip(
+                `<div>
+                     Aswan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1c47555602b5b562566cee4f5c0919f2 = L.marker(
+                [15.5007, 32.5599],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_d5d63cfaac3ef3ca6b69c3f079a5b76a = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_79ab7a909b9ca8dd97984db3be70f960 = $(`<div id="html_79ab7a909b9ca8dd97984db3be70f960" style="width: 100.0%; height: 100.0%;">Khartoum: 0.01%</div>`)[0];
+                popup_d5d63cfaac3ef3ca6b69c3f079a5b76a.setContent(html_79ab7a909b9ca8dd97984db3be70f960);
+            
+        
+
+        marker_1c47555602b5b562566cee4f5c0919f2.bindPopup(popup_d5d63cfaac3ef3ca6b69c3f079a5b76a)
+        ;
+
+        
+    
+    
+            marker_1c47555602b5b562566cee4f5c0919f2.bindTooltip(
+                `<div>
+                     Khartoum
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_728f30d7fe9694283590d81610e7fdad = L.marker(
+                [32.8872, 13.1913],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_0ebebd130a99d78b3b9ae11d5820ff0b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_611770ce074a06858e240eaa30fd6543 = $(`<div id="html_611770ce074a06858e240eaa30fd6543" style="width: 100.0%; height: 100.0%;">Tripoli: 0.01%</div>`)[0];
+                popup_0ebebd130a99d78b3b9ae11d5820ff0b.setContent(html_611770ce074a06858e240eaa30fd6543);
+            
+        
+
+        marker_728f30d7fe9694283590d81610e7fdad.bindPopup(popup_0ebebd130a99d78b3b9ae11d5820ff0b)
+        ;
+
+        
+    
+    
+            marker_728f30d7fe9694283590d81610e7fdad.bindTooltip(
+                `<div>
+                     Tripoli
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_e9b68736794201f13afd969076edffe4 = L.marker(
+                [31.9454, 35.9284],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_2d2a3ddf963b1c9d0635087eb520348f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_4b3658053f0674fd7cd8c3a2af7b4618 = $(`<div id="html_4b3658053f0674fd7cd8c3a2af7b4618" style="width: 100.0%; height: 100.0%;">Amman: 0.01%</div>`)[0];
+                popup_2d2a3ddf963b1c9d0635087eb520348f.setContent(html_4b3658053f0674fd7cd8c3a2af7b4618);
+            
+        
+
+        marker_e9b68736794201f13afd969076edffe4.bindPopup(popup_2d2a3ddf963b1c9d0635087eb520348f)
+        ;
+
+        
+    
+    
+            marker_e9b68736794201f13afd969076edffe4.bindTooltip(
+                `<div>
+                     Amman
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d3f38f58c1629b2c007dbdd0ae23e9ac = L.marker(
+                [24.7136, 46.6753],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_b36c53fd6999936c36b035ef0174c6c6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9218f9f4946849ef243ccb316d3908a6 = $(`<div id="html_9218f9f4946849ef243ccb316d3908a6" style="width: 100.0%; height: 100.0%;">Riyadh: 0.01%</div>`)[0];
+                popup_b36c53fd6999936c36b035ef0174c6c6.setContent(html_9218f9f4946849ef243ccb316d3908a6);
+            
+        
+
+        marker_d3f38f58c1629b2c007dbdd0ae23e9ac.bindPopup(popup_b36c53fd6999936c36b035ef0174c6c6)
+        ;
+
+        
+    
+    
+            marker_d3f38f58c1629b2c007dbdd0ae23e9ac.bindTooltip(
+                `<div>
+                     Riyadh
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_33c938688d2aa302cd286384a0ab23c3 = L.marker(
+                [33.8938, 35.5018],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_96f4a71f7cc564564cfb02b79382108f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_af56feabf1ca7a90c7e539c9913c4fca = $(`<div id="html_af56feabf1ca7a90c7e539c9913c4fca" style="width: 100.0%; height: 100.0%;">Beirut: 0.01%</div>`)[0];
+                popup_96f4a71f7cc564564cfb02b79382108f.setContent(html_af56feabf1ca7a90c7e539c9913c4fca);
+            
+        
+
+        marker_33c938688d2aa302cd286384a0ab23c3.bindPopup(popup_96f4a71f7cc564564cfb02b79382108f)
+        ;
+
+        
+    
+    
+            marker_33c938688d2aa302cd286384a0ab23c3.bindTooltip(
+                `<div>
+                     Beirut
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_fa39a0119f2abb885beb9e557493cc92 = L.marker(
+                [33.9716, -6.8498],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_54ab9382e42f49da1a503072be72536d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_14129dbb4191cdd1b5f025940a32376a = $(`<div id="html_14129dbb4191cdd1b5f025940a32376a" style="width: 100.0%; height: 100.0%;">Rabat: 0.01%</div>`)[0];
+                popup_54ab9382e42f49da1a503072be72536d.setContent(html_14129dbb4191cdd1b5f025940a32376a);
+            
+        
+
+        marker_fa39a0119f2abb885beb9e557493cc92.bindPopup(popup_54ab9382e42f49da1a503072be72536d)
+        ;
+
+        
+    
+    
+            marker_fa39a0119f2abb885beb9e557493cc92.bindTooltip(
+                `<div>
+                     Rabat
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1e98a182679b00ed8f04ebabcf3006cc = L.marker(
+                [31.7683, 35.2137],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_2228deccc67872fee466ecda7cfb3b2e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bc10bbbb88e6d78e84af4229efc4c6d0 = $(`<div id="html_bc10bbbb88e6d78e84af4229efc4c6d0" style="width: 100.0%; height: 100.0%;">Jerusalem: 0.01%</div>`)[0];
+                popup_2228deccc67872fee466ecda7cfb3b2e.setContent(html_bc10bbbb88e6d78e84af4229efc4c6d0);
+            
+        
+
+        marker_1e98a182679b00ed8f04ebabcf3006cc.bindPopup(popup_2228deccc67872fee466ecda7cfb3b2e)
+        ;
+
+        
+    
+    
+            marker_1e98a182679b00ed8f04ebabcf3006cc.bindTooltip(
+                `<div>
+                     Jerusalem
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_245d2b27a3b0afe3becf6f7be78bc24b = L.marker(
+                [21.4858, 39.1925],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_b8e3709f152f09044e2875f622153fc0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bf9c188aded9ef51a57c698170104a6c = $(`<div id="html_bf9c188aded9ef51a57c698170104a6c" style="width: 100.0%; height: 100.0%;">Jeddah: 0.01%</div>`)[0];
+                popup_b8e3709f152f09044e2875f622153fc0.setContent(html_bf9c188aded9ef51a57c698170104a6c);
+            
+        
+
+        marker_245d2b27a3b0afe3becf6f7be78bc24b.bindPopup(popup_b8e3709f152f09044e2875f622153fc0)
+        ;
+
+        
+    
+    
+            marker_245d2b27a3b0afe3becf6f7be78bc24b.bindTooltip(
+                `<div>
+                     Jeddah
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_63c102328cfee4f8dc2fa0315e20882a = L.marker(
+                [36.8065, 10.1815],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_fd16347bb8dfe4804fb663dc315d1eae = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e57f4f8ba89b99c4989bdf79e2bb484d = $(`<div id="html_e57f4f8ba89b99c4989bdf79e2bb484d" style="width: 100.0%; height: 100.0%;">Tunis: 0.00%</div>`)[0];
+                popup_fd16347bb8dfe4804fb663dc315d1eae.setContent(html_e57f4f8ba89b99c4989bdf79e2bb484d);
+            
+        
+
+        marker_63c102328cfee4f8dc2fa0315e20882a.bindPopup(popup_fd16347bb8dfe4804fb663dc315d1eae)
+        ;
+
+        
+    
+    
+            marker_63c102328cfee4f8dc2fa0315e20882a.bindTooltip(
+                `<div>
+                     Tunis
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_4fddc0aa6a8c44d8f7943eddac3f349b = L.marker(
+                [32.0387, 35.7272],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_daaf3d76d933ec6cf250c2ba2090c4ad = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_300a61d6ddf18618a13cbadf434d158d = $(`<div id="html_300a61d6ddf18618a13cbadf434d158d" style="width: 100.0%; height: 100.0%;">Salt: 0.00%</div>`)[0];
+                popup_daaf3d76d933ec6cf250c2ba2090c4ad.setContent(html_300a61d6ddf18618a13cbadf434d158d);
+            
+        
+
+        marker_4fddc0aa6a8c44d8f7943eddac3f349b.bindPopup(popup_daaf3d76d933ec6cf250c2ba2090c4ad)
+        ;
+
+        
+    
+    
+            marker_4fddc0aa6a8c44d8f7943eddac3f349b.bindTooltip(
+                `<div>
+                     Salt
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1aacd4d388854af7a27571ec10f8fc86 = L.marker(
+                [31.2001, 29.9187],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_bb8972538b448909d9ffc419b865c9c2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b0fac82d3c586150620c1f201db1f077 = $(`<div id="html_b0fac82d3c586150620c1f201db1f077" style="width: 100.0%; height: 100.0%;">Alexandria: 0.00%</div>`)[0];
+                popup_bb8972538b448909d9ffc419b865c9c2.setContent(html_b0fac82d3c586150620c1f201db1f077);
+            
+        
+
+        marker_1aacd4d388854af7a27571ec10f8fc86.bindPopup(popup_bb8972538b448909d9ffc419b865c9c2)
+        ;
+
+        
+    
+    
+            marker_1aacd4d388854af7a27571ec10f8fc86.bindTooltip(
+                `<div>
+                     Alexandria
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_9553ea4691396cd314c0401d55ec002a = L.marker(
+                [23.588, 58.3829],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_e7bb62cdb8acd842fbf674cd543c7c5c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_486b1154eeb86da63e61e0302fcb43bd = $(`<div id="html_486b1154eeb86da63e61e0302fcb43bd" style="width: 100.0%; height: 100.0%;">Muscat: 0.00%</div>`)[0];
+                popup_e7bb62cdb8acd842fbf674cd543c7c5c.setContent(html_486b1154eeb86da63e61e0302fcb43bd);
+            
+        
+
+        marker_9553ea4691396cd314c0401d55ec002a.bindPopup(popup_e7bb62cdb8acd842fbf674cd543c7c5c)
+        ;
+
+        
+    
+    
+            marker_9553ea4691396cd314c0401d55ec002a.bindTooltip(
+                `<div>
+                     Muscat
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_0eb5b40c33e1101bf6ddfe8d7df2b6c1 = L.marker(
+                [33.3152, 44.3661],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_26ac4fcf0decf0a7f734b0c031e7689c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_856eaf59d8c0f0eb8b660c65da3c0305 = $(`<div id="html_856eaf59d8c0f0eb8b660c65da3c0305" style="width: 100.0%; height: 100.0%;">Baghdad: 0.00%</div>`)[0];
+                popup_26ac4fcf0decf0a7f734b0c031e7689c.setContent(html_856eaf59d8c0f0eb8b660c65da3c0305);
+            
+        
+
+        marker_0eb5b40c33e1101bf6ddfe8d7df2b6c1.bindPopup(popup_26ac4fcf0decf0a7f734b0c031e7689c)
+        ;
+
+        
+    
+    
+            marker_0eb5b40c33e1101bf6ddfe8d7df2b6c1.bindTooltip(
+                `<div>
+                     Baghdad
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_55aff916d75de5aa3cc1c4e5d2af714d = L.marker(
+                [36.335, 43.1189],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_97a27a557a54a114304b775a1d5f3225 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_cbd5c9a60324a7f13de45a11ad4aa1d1 = $(`<div id="html_cbd5c9a60324a7f13de45a11ad4aa1d1" style="width: 100.0%; height: 100.0%;">Mosul: 0.00%</div>`)[0];
+                popup_97a27a557a54a114304b775a1d5f3225.setContent(html_cbd5c9a60324a7f13de45a11ad4aa1d1);
+            
+        
+
+        marker_55aff916d75de5aa3cc1c4e5d2af714d.bindPopup(popup_97a27a557a54a114304b775a1d5f3225)
+        ;
+
+        
+    
+    
+            marker_55aff916d75de5aa3cc1c4e5d2af714d.bindTooltip(
+                `<div>
+                     Mosul
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_c7b5c00d7406a665240d9adcc5ab22fa = L.marker(
+                [15.3694, 44.191],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_e268cf665836d7f51833c9b15012fc01 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_bed725d53eff9a43bdefbe31e0e989ee = $(`<div id="html_bed725d53eff9a43bdefbe31e0e989ee" style="width: 100.0%; height: 100.0%;">Sanaa: 0.00%</div>`)[0];
+                popup_e268cf665836d7f51833c9b15012fc01.setContent(html_bed725d53eff9a43bdefbe31e0e989ee);
+            
+        
+
+        marker_c7b5c00d7406a665240d9adcc5ab22fa.bindPopup(popup_e268cf665836d7f51833c9b15012fc01)
+        ;
+
+        
+    
+    
+            marker_c7b5c00d7406a665240d9adcc5ab22fa.bindTooltip(
+                `<div>
+                     Sanaa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_577bde5214f1e9b3d1b97f701273d692 = L.marker(
+                [32.1267, 20.083],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_1790db3aa2e2de0f776a4be508e01ba8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_66de406909eb752ce04bd1ceddf3eafd = $(`<div id="html_66de406909eb752ce04bd1ceddf3eafd" style="width: 100.0%; height: 100.0%;">Benghazi: 0.00%</div>`)[0];
+                popup_1790db3aa2e2de0f776a4be508e01ba8.setContent(html_66de406909eb752ce04bd1ceddf3eafd);
+            
+        
+
+        marker_577bde5214f1e9b3d1b97f701273d692.bindPopup(popup_1790db3aa2e2de0f776a4be508e01ba8)
+        ;
+
+        
+    
+    
+            marker_577bde5214f1e9b3d1b97f701273d692.bindTooltip(
+                `<div>
+                     Benghazi
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_1f7d58854d6dfae30401d4a7f0e8de81 = L.marker(
+                [25.2854, 51.531],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_d54d3bdbbd2461691572c6d278fc5d9d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b896d7648548d9fd5de572d7d4548ffa = $(`<div id="html_b896d7648548d9fd5de572d7d4548ffa" style="width: 100.0%; height: 100.0%;">Doha: 0.00%</div>`)[0];
+                popup_d54d3bdbbd2461691572c6d278fc5d9d.setContent(html_b896d7648548d9fd5de572d7d4548ffa);
+            
+        
+
+        marker_1f7d58854d6dfae30401d4a7f0e8de81.bindPopup(popup_d54d3bdbbd2461691572c6d278fc5d9d)
+        ;
+
+        
+    
+    
+            marker_1f7d58854d6dfae30401d4a7f0e8de81.bindTooltip(
+                `<div>
+                     Doha
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_749682203f56088b0e38109c5a5eb89e = L.marker(
+                [30.5085, 47.7804],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_fe159dd90e6c2bd54969824fbbc6ce28 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_85fd6fb8bd049780e000489e50fdcf11 = $(`<div id="html_85fd6fb8bd049780e000489e50fdcf11" style="width: 100.0%; height: 100.0%;">Basra: 0.00%</div>`)[0];
+                popup_fe159dd90e6c2bd54969824fbbc6ce28.setContent(html_85fd6fb8bd049780e000489e50fdcf11);
+            
+        
+
+        marker_749682203f56088b0e38109c5a5eb89e.bindPopup(popup_fe159dd90e6c2bd54969824fbbc6ce28)
+        ;
+
+        
+    
+    
+            marker_749682203f56088b0e38109c5a5eb89e.bindTooltip(
+                `<div>
+                     Basra
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_d6f6d15e04a05a3013383517a86da0a6 = L.marker(
+                [34.0181, -5.0078],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_ac187e7a3378deaf65498ac08cf3457c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_257a91b7c8af6915a7d1809e72e171f1 = $(`<div id="html_257a91b7c8af6915a7d1809e72e171f1" style="width: 100.0%; height: 100.0%;">Fes: 0.00%</div>`)[0];
+                popup_ac187e7a3378deaf65498ac08cf3457c.setContent(html_257a91b7c8af6915a7d1809e72e171f1);
+            
+        
+
+        marker_d6f6d15e04a05a3013383517a86da0a6.bindPopup(popup_ac187e7a3378deaf65498ac08cf3457c)
+        ;
+
+        
+    
+    
+            marker_d6f6d15e04a05a3013383517a86da0a6.bindTooltip(
+                `<div>
+                     Fes
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_db29bade2d8a0b23f824851453b23bc1 = L.marker(
+                [33.5138, 36.2765],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_2e8e02fdf154727254330b19033f2c74 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_eb959e6d0a6ce5cd8c702132d6ab208e = $(`<div id="html_eb959e6d0a6ce5cd8c702132d6ab208e" style="width: 100.0%; height: 100.0%;">Damascus: 0.00%</div>`)[0];
+                popup_2e8e02fdf154727254330b19033f2c74.setContent(html_eb959e6d0a6ce5cd8c702132d6ab208e);
+            
+        
+
+        marker_db29bade2d8a0b23f824851453b23bc1.bindPopup(popup_2e8e02fdf154727254330b19033f2c74)
+        ;
+
+        
+    
+    
+            marker_db29bade2d8a0b23f824851453b23bc1.bindTooltip(
+                `<div>
+                     Damascus
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_2ba657c50b52722cc51218841dd6a30d = L.marker(
+                [34.7398, 10.76],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_40f31b18262ec6a6fee2102f3611af20 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_ae28f6f2cd52e0334a8e0b73f4752727 = $(`<div id="html_ae28f6f2cd52e0334a8e0b73f4752727" style="width: 100.0%; height: 100.0%;">Sfax: 0.00%</div>`)[0];
+                popup_40f31b18262ec6a6fee2102f3611af20.setContent(html_ae28f6f2cd52e0334a8e0b73f4752727);
+            
+        
+
+        marker_2ba657c50b52722cc51218841dd6a30d.bindPopup(popup_40f31b18262ec6a6fee2102f3611af20)
+        ;
+
+        
+    
+    
+            marker_2ba657c50b52722cc51218841dd6a30d.bindTooltip(
+                `<div>
+                     Sfax
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_662ed97275da7b1f14664af4a662a3bb = L.marker(
+                [36.2021, 37.1343],
+                {
+}
+            ).addTo(map_17b9564038c79ab1375b009e5e9603a7);
+        
+    
+        var popup_937bbaacf55fc3c72234960ecff37ec8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_337f93be5b32abced4f9282cee7f6df4 = $(`<div id="html_337f93be5b32abced4f9282cee7f6df4" style="width: 100.0%; height: 100.0%;">Aleppo: 0.00%</div>`)[0];
+                popup_937bbaacf55fc3c72234960ecff37ec8.setContent(html_337f93be5b32abced4f9282cee7f6df4);
+            
+        
+
+        marker_662ed97275da7b1f14664af4a662a3bb.bindPopup(popup_937bbaacf55fc3c72234960ecff37ec8)
+        ;
+
+        
+    
+    
+            marker_662ed97275da7b1f14664af4a662a3bb.bindTooltip(
+                `<div>
+                     Aleppo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

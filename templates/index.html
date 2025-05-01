@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Arabic Dialect Geographic Identifier</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #343a40 0%, #1a1e21 100%);
+            color: white;
+            padding: 25px 20px;
+            border-bottom: 4px solid #007bff;
+            margin-bottom: 30px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            padding: 0;
+        }
+        
+        .main-content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .prediction-box {
+            border-radius: 8px;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-left: 5px solid #007bff;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 30px 0;
+        }
+        
+        .loading .spinner-border {
+            width: 3rem;
+            height: 3rem;
+        }
+        
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 10px 25px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: #0069d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .form-control {
+            border-radius: 5px;
+            padding: 10px 15px;
+            border: 1px solid #ced4da;
+        }
+        
+        .model-options, .map-options {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #e9ecef;
+        }
+        
+        .option-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #495057;
+            border-bottom: 2px solid #dee2e6;
+            padding-bottom: 5px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #495057;
+        }
+        
+        .dialect-region {
+            display: inline-block;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 20px;
+            color: white;
+            font-weight: bold;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .region-legend {
+            margin-top: 15px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        
+        .region-item {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .region-color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 3px;
+            margin-right: 8px;
+        }
+        
+        .region-name {
+            font-weight: 500;
+        }
+        
+        .section-title {
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: #343a40;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        
+        .prediction-result {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            transition: all 0.2s;
+        }
+        
+        .prediction-result:hover {
+            background-color: #e9ecef;
+        }
+        
+        .badge {
+            margin-right: 15px;
+            font-size: 14px;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .model-info {
+            margin-top: 15px;
+            padding: 8px 12px;
+            background-color: #e9ecef;
+            border-radius: 4px;
+            font-style: italic;
+        }
+
+        #results {
+            margin-top: 30px;
+        }
+        
+        .example-buttons {
+            margin-top: 15px;
+        }
+        
+        .example-btn {
+            margin-right: 10px;
+            margin-bottom: 10px;
+            background-color: #f1f1f1;
+            border: 1px solid #ddd;
+            padding: 5px 10px;
+        }
+       
+        #map-container {
+            height: 600px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-top: 20px;
+            position: relative;
+            background-color: #f5f5f5;
+        }
+
+        #map-container iframe {
+            width: 100% !important;  
+            height: 600px !important;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1 class="text-center mb-2">Arabic Dialect Geographic Identifier</h1>
+            <p class="text-center mb-0">Analysis and visualization using the MADAR corpus</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="main-content">
+            <form id="dialect-form">
+                <div class="form-group">
+                    <label for="text-input">Enter Arabic Text:</label>
+                    <textarea class="form-control" dir="rtl" id="text-input" rows="4" required
+                        placeholder="أدخل النص العربي هنا..."></textarea>
+                </div>
+                
+                <div class="example-buttons">
+                    <p class="mb-1">Test examples:</p>
+                    <button type="button" class="btn example-btn" id="test-egy">Egyptian Example</button>
+                    <button type="button" class="btn example-btn" id="test-lev">Levantine Example</button>
+                    <button type="button" class="btn example-btn" id="test-gulf">Gulf Example</button>
+                    <button type="button" class="btn example-btn" id="test-maghrebi">Maghrebi Example</button>
+                </div>
+                
+                <div class="row mt-3">
+                    <div class="col-md-6">
+                        <div class="model-options">
+                            <div class="option-title">Model Selection</div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="model_choice" id="ensemble-model" value="ensemble" checked>
+                                <label class="form-check-label" for="ensemble-model">
+                                    <strong>Ensemble</strong> - Combines both models for best accuracy
+                                </label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="model_choice" id="transformer-model" value="transformer">
+                                <label class="form-check-label" for="transformer-model">
+                                    <strong>Transformer</strong> - MARBERT model (better for context)
+                                </label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="model_choice" id="bilstm-model" value="bilstm">
+                                <label class="form-check-label" for="bilstm-model">
+                                    <strong>BiLSTM-CNN</strong> - Traditional model (better for features)
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="map-options">
+                            <div class="option-title">Map Visualization</div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="map-type" id="heat-map" value="heat" checked>
+                                <label class="form-check-label" for="heat-map">
+                                    <strong>Heat Map</strong> - Intensity shows dialect probability
+                                </label>
+                            </div>
+                            <div class="form-check mt-2">
+                                <input class="form-check-input" type="radio" name="map-type" id="point-map" value="point">
+                                <label class="form-check-label" for="point-map">
+                                    <strong>Point Map</strong> - Circle size shows probability
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-lg btn-block mt-4">
+                    Identify Dialect
+                </button>
+            </form>
+            
+            <div class="loading mt-4">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <p class="mt-3">Analyzing dialectal features...</p>
+            </div>
+            
+            <div id="results" style="display: none;">
+                <h3 class="section-title">Dialect Analysis Results</h3>
+                
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="prediction-box">
+                            <h4>Dialect Predictions</h4>
+                            <div id="predictions-list" class="mt-3">
+                                <!-- Top 3 predictions shown here -->
+                            </div>
+                            
+                            <div id="more-predictions" class="mt-3" style="display:none;">
+                                <!-- Additional predictions shown here when expanded -->
+                            </div>
+                            
+                            <button id="show-more-btn" class="btn btn-sm btn-outline-primary mt-2" style="display:none;">
+                                Show all predictions
+                            </button>
+                            
+                            <button id="show-less-btn" class="btn btn-sm btn-outline-secondary mt-2" style="display:none;">
+                                Show fewer predictions
+                            </button>
+                            
+                            <div id="model-info" class="model-info mt-3">
+                                Model used: <span id="model-used">ensemble</span>
+                            </div>
+                        </div>
+                        <div class="region-legend mt-4">
+                            <h5>Dialect Regions</h5>
+                            <!-- Region color key -->
+                            <div class="region-item">
+                                <span class="region-color" style="background-color: #FF5733;"></span>
+                                <span class="region-name">EGY - Egyptian</span>
+                            </div>
+                            <div class="region-item">
+                                <span class="region-color" style="background-color: #33FF57;"></span>
+                                <span class="region-name">LEV - Levantine</span>
+                            </div>
+                            <div class="region-item">
+                                <span class="region-color" style="background-color: #3357FF;"></span>
+                                <span class="region-name">GLF - Gulf</span>
+                            </div>
+                            <div class="region-item">
+                                <span class="region-color" style="background-color: #FFCC33;"></span>
+                                <span class="region-name">MGR - Maghrebi</span>
+                            </div>
+                            <div class="region-item">
+                                <span class="region-color" style="background-color: #FF33CC;"></span>
+                                <span class="region-name">IRQ - Iraqi</span>
+                            </div>
+                            <div class="region-item">
+                                <span class="region-color" style="background-color: #33CCFF;"></span>
+                                <span class="region-name">SDN - Sudanese</span>
+                            </div>
+                            <div class="region-item">
+                                <span class="region-color" style="background-color: #CC33FF;"></span>
+                                <span class="region-name">YEM - Yemeni</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h4>Geographic Distribution:</h4>
+                        <div id="map-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#dialect-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Show loading spinner
+                $('.loading').show();
+                $('#results').hide();
+                
+                // Get form data
+                const text = $('#text-input').val();
+                const mapType = $('input[name="map-type"]:checked').val();
+                const modelChoice = $('input[name="model_choice"]:checked').val();
+                
+                // Send request
+                $.ajax({
+                    url: '/predict',
+                    method: 'POST',
+                    data: {
+                        text: text,
+                        map_type: mapType,
+                        model_choice: modelChoice
+                    },
+                    success: function(response) {
+                        // Hide loading spinner
+                        $('.loading').hide();
+                        
+                        // Split predictions: top 3 and the rest
+                        const topPredictions = response.top_predictions.slice(0, 3);
+                        const morePredictions = response.top_predictions.slice(3);
+                        
+                        // Display top 3 predictions
+                        const topPredictionsHtml = topPredictions.map(function(pred, index) {
+                            let badgeClass = 'badge-primary';
+                            if (index === 0) badgeClass = 'badge-success';
+                            else if (index === 1) badgeClass = 'badge-info';
+                            else if (index === 2) badgeClass = 'badge-warning';
+                            
+                            return `<div class="prediction-result">
+                                        <span class="badge ${badgeClass}">${index+1}</span>
+                                        <div>
+                                            <strong>${pred.dialect}</strong>: ${pred.probability}
+                                        </div>
+                                    </div>`;
+                        }).join('');
+                        
+                        $('#predictions-list').html(topPredictionsHtml);
+                        
+                        // Handle additional predictions if they exist
+                        if (morePredictions.length > 0) {
+                            const morePredictionsHtml = morePredictions.map(function(pred, index) {
+                                // Cycle through badge colors for remaining predictions
+                                let badgeClass;
+                                switch ((index + 3) % 5) {
+                                    case 0: badgeClass = 'badge-danger'; break;
+                                    case 1: badgeClass = 'badge-primary'; break;
+                                    case 2: badgeClass = 'badge-dark'; break;
+                                    case 3: badgeClass = 'badge-info'; break;
+                                    case 4: badgeClass = 'badge-warning'; break;
+                                    default: badgeClass = 'badge-secondary';
+                                }
+                                
+                                return `<div class="prediction-result">
+                                            <span class="badge ${badgeClass}">${index+4}</span>
+                                            <div>
+                                                <strong>${pred.dialect}</strong>: ${pred.probability}
+                                            </div>
+                                        </div>`;
+                            }).join('');
+                            
+                            $('#more-predictions').html(morePredictionsHtml);
+                            $('#show-more-btn').show();
+                        }
+                        
+                        // Display model used
+                        if (response.model_used) {
+                            $('#model-used').text(response.model_used);
+                            $('#model-info').show();
+                        } else {
+                            $('#model-info').hide();
+                        }
+                        
+                        // Display map (add timestamp to prevent caching)
+                        const timestamp = new Date().getTime();
+                        $('#map-container').html(`<iframe src="${response.map_html}?t=${timestamp}" width="100%" height="600" frameborder="0"></iframe>`);
+                        
+                        // Show results section
+                        $('#results').fadeIn(500);
+                        
+                        // Scroll to results
+                        $('html, body').animate({
+                            scrollTop: $("#results").offset().top - 20
+                        }, 500);
+                    },
+                    error: function(error) {
+                        $('.loading').hide();
+                        alert('An error occurred. Please try again.');
+                        console.error('Error:', error);
+                    }
+                });
+            });
+            
+            // Example text buttons
+            $('#test-egy').click(function() {
+                $('#text-input').val('انا رايح السوق دلوقتي عشان اجيب حاجات للبيت. الجو حر اوي النهاردة مش قادر اطلع من البيت.');
+            });
+            
+            $('#test-lev').click(function() {
+                $('#text-input').val('بدي روح عالسوق هلق لاشتري غراض للبيت. الجو كتير حار اليوم ما بقدر اطلع برا.');
+            });
+            
+            $('#test-gulf').click(function() {
+                $('#text-input').val('ابغى اروح السوق الحين عشان اجيب اغراض للبيت. الجو حار واجد اليوم ما اقدر اطلع.');
+            });
+            
+            $('#test-maghrebi').click(function() {
+                $('#text-input').val('غادي نمشي للسوق دابا باش نشري حوايج للدار. الجو سخون بزاف اليوم ما نقدرش نخرج.');
+            });
+
+            // Show/hide more predictions
+            $('#show-more-btn').click(function() {
+                $('#more-predictions').slideDown();
+                $(this).hide();
+                $('#show-less-btn').show();
+            });
+
+            $('#show-less-btn').click(function() {
+                $('#more-predictions').slideUp();
+                $(this).hide();
+                $('#show-more-btn').show();
+            });
+        });
+    </script>
+</body>
+</html>
